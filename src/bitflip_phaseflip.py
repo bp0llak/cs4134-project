@@ -72,7 +72,7 @@ def decode_9qubit_shor():
     qc.h(q[6])
     qc.cx(q[0], q[3])
     qc.cx(q[0], q[6])
-    qc.ccx(q[6], q[3], q[0])
+    qc.ccx(q[3], q[6], q[0])
     return qc # Need to measure after
     
     
