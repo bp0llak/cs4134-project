@@ -87,24 +87,33 @@ def drawCircuit(encode : QuantumCircuit, decode : QuantumCircuit):
 
 
 if __name__ == "__main__":
-    p = 0.2
+    p = 0.2 # Change this to alter probability for models
     noise_none = None
     noise_bit = bit_flip_noise_model(p=p)
     noise_phase = phase_flip_noise_model(p=p)
-    noise_mixed = mixed_noise_model(p_x=0.1,p_z=0.1)
+    noise_mixed = mixed_noise_model(p_x=(p/2),p_z=(p/2))
 
     print("3-Qubit |0> Bit-Flip Code (no noise):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), noise_model=noise_none))
     print("3-Qubit |0> Bit-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), noise_model=noise_bit))
     print("3-Qubit |1> Bit-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), initial="1", noise_model=noise_bit))
+    print("3-Qubit |+> Bit-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), initial="+", noise_model=noise_bit))
+    print("3-Qubit |-> Bit-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), initial="-", noise_model=noise_bit))
     print("3-Qubit |0> Bit-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), noise_model=noise_phase))
     print("3-Qubit |1> Bit-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), initial="1", noise_model=noise_phase))
+    print("3-Qubit |+> Bit-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), initial="+", noise_model=noise_phase))
+    print("3-Qubit |-> Bit-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), initial="-", noise_model=noise_phase))
     #print("3-Qubit Bit-Flip Code (mixed noise p_x/z=0.2):", run_qec_test(encode_3qubit_bitflip(), decode_3qubit_bitflip(), noise_mixed))
+    print ("===========================")
 
     print("3-Qubit |0> Phase-Flip Code (no noise):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), noise_model=noise_none))
     print("3-Qubit |0> Phase-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), noise_model=noise_bit))
     print("3-Qubit |1> Phase-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), initial="1", noise_model=noise_bit))
+    print("3-Qubit |+> Phase-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), initial="+", noise_model=noise_bit))
+    print("3-Qubit |-> Phase-Flip Code (bit-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), initial="-", noise_model=noise_bit))
     print("3-Qubit |0> Phase-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), noise_model=noise_phase))
     print("3-Qubit |1> Phase-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), initial="1", noise_model=noise_phase))
+    print("3-Qubit |+> Phase-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), initial="+", noise_model=noise_phase))
+    print("3-Qubit |-> Phase-Flip Code (phase-flip noise p=0.2):", run_qec_test(encode_3qubit_phaseflip(), decode_3qubit_phaseflip(), initial="-", noise_model=noise_phase))
 
     print("=== SHOR CODE (9-qubit) ===")
     print("No noise:", run_qec_test(encode_9qubit_shor(), decode_9qubit_shor(), noise_model=noise_none))
